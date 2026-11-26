@@ -46,10 +46,12 @@ jobs:
             condemnation_repository.py \
             condemnation_role_restore.py \
             condemnation_release.py \
+            condemnation_role_sync.py \
             tests/test_condemnation_repository.py \
             tests/test_condemnation_role_restore.py \
             tests/test_condemnation_pardon_runtime.py \
             tests/test_condemnation_release_service.py \
+            tests/test_condemnation_role_sync.py \
             tests/test_condemnation_case_card.py \
             tests/test_condemnation_log_dedup.py \
             tests/test_condemnation_private_threads.py \
@@ -63,6 +65,7 @@ jobs:
               test_condemnation_role_restore \
               test_condemnation_pardon_runtime \
               test_condemnation_release_service \
+              test_condemnation_role_sync \
               test_condemnation_case_card \
               test_condemnation_log_dedup \
               test_condemnation_private_threads \
