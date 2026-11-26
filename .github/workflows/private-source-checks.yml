@@ -74,7 +74,29 @@ jobs:
           fi
 
           if [ "$compile_status" -ne 0 ] || [ "$test_status" -ne 0 ]; then
-            echo "::error::Private-source checks failed. Detailed output is intentionally withheld because this is a public repository."
+            echo "::error::Private-source checks failed. Printing only sanitized test identifiers."
+            if [ "$compile_status" -ne 0 ]; then
+              echo "Compilation failed in configured source/test files."
+            elif [ "$test_status" -ne 0 ]; then
+              python - "$RUNNER_TEMP/private-check.log" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          output = Path(sys.argv[1]).read_text(errors="replace")
+          failures = re.findall(
+              r"^(?:FAIL|ERROR): ([A-Za-z_][A-Za-z0-9_.]*)",
+              output,
+              flags=re.MULTILINE,
+          )
+          if failures:
+              print("Failed test identifiers (sanitized):")
+              for name in dict.fromkeys(failures):
+                  print(f"- {name}")
+          else:
+              print("Regression test command failed; no test identifiers were available.")
+          PY
+            fi
             exit 1
           fi
 
