@@ -94,7 +94,7 @@ jobs:
               if name in reported:
                   continue
               reported.add(name)
-              frame = re.search(r'File "([^"]+/(?:tests/)?[A-Za-z0-9_]+\\.py)", line (\\d+)', block)
+              frame = re.search(r'File "([^"]+/(?:tests/)?[A-Za-z0-9_]+\.py)", line (\d+)', block)
               kind = "AssertionError" if "AssertionError" in block else "Exception"
               location = f"{Path(frame.group(1)).name}:{frame.group(2)}" if frame else "location unavailable"
               print(f"- {name} [{location}; {kind}]")
