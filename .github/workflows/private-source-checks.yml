@@ -46,6 +46,7 @@ jobs:
             condemnation_repository.py \
             condemnation_role_restore.py \
             condemnation_release.py \
+            tests/test_condemnation_repository.py \
             tests/test_condemnation_role_restore.py \
             tests/test_condemnation_pardon_runtime.py \
             tests/test_condemnation_release_service.py \
@@ -54,6 +55,7 @@ jobs:
 
           if [ "$compile_status" -eq 0 ]; then
             PYTHONPATH="tests:." python -m unittest \
+              test_condemnation_repository \
               test_condemnation_role_restore \
               test_condemnation_pardon_runtime \
               test_condemnation_release_service \
@@ -68,4 +70,4 @@ jobs:
             exit 1
           fi
 
-          echo "Private-source compile and focused regression tests passed."
+          echo "Private-source compile and condemnation regression tests passed."
