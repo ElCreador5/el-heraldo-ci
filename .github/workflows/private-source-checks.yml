@@ -50,6 +50,10 @@ jobs:
             tests/test_condemnation_role_restore.py \
             tests/test_condemnation_pardon_runtime.py \
             tests/test_condemnation_release_service.py \
+            tests/test_condemnation_case_card.py \
+            tests/test_condemnation_log_dedup.py \
+            tests/test_condemnation_private_threads.py \
+            tests/test_condemn_default_reason_test_only.py \
             > "$RUNNER_TEMP/private-check.log" 2>&1
           compile_status=$?
 
@@ -59,6 +63,10 @@ jobs:
               test_condemnation_role_restore \
               test_condemnation_pardon_runtime \
               test_condemnation_release_service \
+              test_condemnation_case_card \
+              test_condemnation_log_dedup \
+              test_condemnation_private_threads \
+              test_condemn_default_reason_test_only \
               >> "$RUNNER_TEMP/private-check.log" 2>&1
             test_status=$?
           else
