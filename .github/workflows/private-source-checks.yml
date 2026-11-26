@@ -84,16 +84,21 @@ jobs:
           from pathlib import Path
 
           output = Path(sys.argv[1]).read_text(errors="replace")
-          failures = re.findall(
-              r"^(?:FAIL|ERROR): ([A-Za-z_][A-Za-z0-9_.]*)",
-              output,
-              flags=re.MULTILINE,
-          )
-          if failures:
-              print("Failed test identifiers (sanitized):")
-              for name in dict.fromkeys(failures):
-                  print(f"- {name}")
-          else:
+          blocks = re.split(r"(?=^(?:FAIL|ERROR): )", output, flags=re.MULTILINE)
+          reported = set()
+          for block in blocks:
+              match = re.search(r"^(?:FAIL|ERROR): ([A-Za-z_][A-Za-z0-9_.]*)", block, re.MULTILINE)
+              if not match:
+                  continue
+              name = match.group(1)
+              if name in reported:
+                  continue
+              reported.add(name)
+              frame = re.search(r'File "([^"]+/(?:tests/)?[A-Za-z0-9_]+\\.py)", line (\\d+)', block)
+              kind = "AssertionError" if "AssertionError" in block else "Exception"
+              location = f"{Path(frame.group(1)).name}:{frame.group(2)}" if frame else "location unavailable"
+              print(f"- {name} [{location}; {kind}]")
+          if not reported:
               print("Regression test command failed; no test identifiers were available.")
           PY
             fi
