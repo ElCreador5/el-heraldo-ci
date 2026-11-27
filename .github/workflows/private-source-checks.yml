@@ -47,6 +47,7 @@ jobs:
             condemnation_role_restore.py \
             condemnation_release.py \
             condemnation_role_sync.py \
+            condemnation_private_threads.py \
             tests/test_condemnation_repository.py \
             tests/test_condemnation_role_restore.py \
             tests/test_condemnation_pardon_runtime.py \
