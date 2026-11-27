@@ -63,7 +63,7 @@ jobs:
           compile_status=$?
 
           if [ "$compile_status" -eq 0 ]; then
-            PYTHONPATH="tests:." python -m unittest \
+            PYTHONPATH="tests:." python -m unittest -v \
               test_condemnation_repository \
               test_condemnation_role_restore \
               test_condemnation_pardon_runtime \
