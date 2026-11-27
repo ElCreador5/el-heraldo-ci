@@ -26,6 +26,7 @@ Este repositorio contiene únicamente el workflow público que solicita un runne
 - Instala dependencias y compila los módulos de condenas; ejecuta las pruebas seleccionadas de persistencia, restauración, liberación, sincronización de roles, tarjetas y conversaciones privadas.
 - No publica artifacts, logs de pruebas, cobertura ni archivos del repositorio privado.
 - Redirige el detalle de las pruebas a un archivo temporal del runner y solo publica un resultado genérico.
+- La ejecución usa salida de pruebas detallada dentro del archivo temporal; el resumen público sigue limitado a identificadores de pruebas y estado.
 - No toca `main`, la rama `Pruebas` del repositorio privado, Railway ni Enzonic.
 
 ## Límites y seguridad
