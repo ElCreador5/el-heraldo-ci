@@ -16,14 +16,14 @@ Este repositorio contiene únicamente el workflow público que solicita un runne
    - Name: `PRIVATE_REPO_READ_TOKEN`
    - Value: el token recién creado.
    - Nunca pegues el token en ChatGPT, en un issue, en un archivo o en un commit.
-5. Abre Actions → `El Heraldo - private source checks` → Run workflow.
+5. Abre Actions → `El Heraldo - private source checks` → Run workflow. También se ejecuta al actualizar este workflow en la rama `main` del repositorio público.
 
 ## Qué hace el workflow
 
-- Solo se dispara manualmente; no se ejecuta con `pull_request` ni con `push`.
+- Se dispara manualmente o al actualizar el workflow en la rama `main` de este repositorio; no se ejecuta con `pull_request` ni con eventos de `push` del repositorio privado.
 - Descarga exclusivamente la rama privada `Pruebas`.
 - Usa el token solo durante el paso de checkout y desactiva `persist-credentials`.
-- Instala dependencias y ejecuta compilación + las tres pruebas de condenas seleccionadas.
+- Instala dependencias y compila los módulos de condenas; ejecuta las pruebas seleccionadas de persistencia, restauración, liberación, sincronización de roles, tarjetas y conversaciones privadas.
 - No publica artifacts, logs de pruebas, cobertura ni archivos del repositorio privado.
 - Redirige el detalle de las pruebas a un archivo temporal del runner y solo publica un resultado genérico.
 - No toca `main`, la rama `Pruebas` del repositorio privado, Railway ni Enzonic.
