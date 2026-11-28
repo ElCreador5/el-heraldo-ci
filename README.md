@@ -23,7 +23,7 @@ Este repositorio contiene únicamente el workflow público que solicita un runne
 - Se dispara manualmente o al actualizar el workflow en la rama `main` de este repositorio; no se ejecuta con `pull_request` ni con eventos de `push` del repositorio privado.
 - Descarga exclusivamente la rama privada `Pruebas`.
 - Usa el token solo durante el paso de checkout y desactiva `persist-credentials`.
-- Instala dependencias, compila los módulos de condenas y persistencia; ejecuta regresiones seleccionadas de condenas, repositorio SQLite de Sugerencias, recuperación tras reinicio, transacciones del panel y cierre de conexiones y recuperación de vistas tras reinicio.
+- Instala dependencias, compila los módulos de condenas y persistencia; ejecuta regresiones seleccionadas de condenas, repositorio SQLite de Sugerencias, recuperación tras reinicio, transacciones del panel y cierre de conexiones y recuperación de vistas tras reinicio y concurrencia de actividad por servidor.
 - No publica artifacts, logs de pruebas, cobertura ni archivos del repositorio privado.
 - Redirige el detalle de las pruebas a un archivo temporal del runner y solo publica un resultado genérico.
 - La ejecución usa salida de pruebas detallada dentro del archivo temporal; el resumen público sigue limitado a identificadores de pruebas y estado.
