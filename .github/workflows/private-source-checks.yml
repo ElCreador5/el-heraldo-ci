@@ -64,6 +64,7 @@ jobs:
             tests/test_suggestions_repository.py \
             tests/test_suggestion_panel_persistence.py \
             tests/test_personality_pending_cleanup.py \
+            tests/test_activity_persistence.py \
             tests/test_condemn_default_reason_test_only.py \
             > "$RUNNER_TEMP/private-check.log" 2>&1
           compile_status=$?
@@ -83,6 +84,7 @@ jobs:
               test_suggestions_repository \
               test_suggestion_panel_persistence \
               test_personality_pending_cleanup \
+              test_activity_persistence \
               >> "$RUNNER_TEMP/private-check.log" 2>&1
             test_status=$?
           else
