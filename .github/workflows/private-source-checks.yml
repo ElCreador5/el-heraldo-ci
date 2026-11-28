@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   private-tests:
-    name: Run tests against private Pruebas branch
+    name: Run focused persistence and condemnation checks against private Pruebas branch
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -50,6 +50,8 @@ jobs:
             condemnation_release.py \
             condemnation_role_sync.py \
             condemnation_private_threads.py \
+            suggestions_repository.py \
+            sqlite_contract.py \
             tests/test_condemnation_repository.py \
             tests/test_condemnation_role_restore.py \
             tests/test_condemnation_pardon_runtime.py \
@@ -58,6 +60,10 @@ jobs:
             tests/test_condemnation_case_card.py \
             tests/test_condemnation_log_dedup.py \
             tests/test_condemnation_private_threads.py \
+            tests/test_suggestions_sqlite.py \
+            tests/test_suggestions_repository.py \
+            tests/test_suggestion_panel_persistence.py \
+            tests/test_personality_pending_cleanup.py \
             tests/test_condemn_default_reason_test_only.py \
             > "$RUNNER_TEMP/private-check.log" 2>&1
           compile_status=$?
@@ -73,6 +79,10 @@ jobs:
               test_condemnation_log_dedup \
               test_condemnation_private_threads \
               test_condemn_default_reason_test_only \
+              test_suggestions_sqlite \
+              test_suggestions_repository \
+              test_suggestion_panel_persistence \
+              test_personality_pending_cleanup \
               >> "$RUNNER_TEMP/private-check.log" 2>&1
             test_status=$?
           else
